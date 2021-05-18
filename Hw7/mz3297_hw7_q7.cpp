@@ -11,10 +11,12 @@ int main() {
 
     cout << "Missing Numbers are: [";
     for(int i = 0; i < missingNumArrSize; i++){
-        if(i == missingNumArrSize - 1)
-            cout << missingNumArr[i];
-        else
-            cout << missingNumArr[i] << ",";
+        if(missingNumArr[i] != 0) {
+            if (i == missingNumArrSize - 1)
+                cout << missingNumArr[i];
+            else
+                cout << missingNumArr[i] << ",";
+        }
     }
     cout << "]" << endl;
     cout << "There are " << missingNumArrSize << " missing numbers." << endl;
@@ -25,7 +27,7 @@ int main() {
 int* findMissing(int arr[], int n, int& resArrSize){
     int * ar = new int[n]{0};
     int missingNumSize=0;
-    int * missingNum = new int[missingNumSize];
+    int * missingNum = new int[n];
     for (int i = 0; i < n; i++){
         ar[arr[i]] ++;
     }

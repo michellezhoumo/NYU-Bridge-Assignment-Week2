@@ -20,20 +20,20 @@ int main() {
     outputPosNum(posAr, posArSize1);
     delete[] posAr;
 
-    int posArSize2 = 0;
+    int posArSize2 = 0; //initialize to the address of 0
     posAr = getPosNums2(ar, arSize, &posArSize2);
     cout << "Section b. Output: ";
     outputPosNum(posAr, posArSize2);
     delete[] posAr;
 
-    int posArSize3;
+    int posArSize3 = arSize;
     posAr = new int[posArSize3];
     getPosNums3(ar, arSize, posAr, posArSize3);
     cout << "Section c. Output: ";
     outputPosNum(posAr, posArSize3);
     delete[] posAr;
 
-    int posArSize4 = 0;
+    int posArSize4 = arSize;
     posAr = new int[posArSize3];
     getPosNums4(ar, arSize, &posAr, &posArSize4);
     cout << "Section d. Output: ";
@@ -57,7 +57,7 @@ void outputPosNum(int* arr, int arrSize){
 int* getPosNums1(int* arr, int arrSize, int& outPosArrSize){
     int i,j=0;
     int posArrSize = 0;
-    int * posArr = new int[posArrSize];
+    int * posArr = new int[arrSize];
     for (i = 0; i < arrSize; i++){
         if (arr[i] > 0) {
             posArrSize++;
@@ -73,8 +73,8 @@ int* getPosNums1(int* arr, int arrSize, int& outPosArrSize){
 int* getPosNums2(int* arr, int arrSize, int* outPosArrSizePtr){
     int i,j=0;
     //take out value at that address
-    int posArrSize = *outPosArrSizePtr;
-    int * posArr = new int[posArrSize];
+    int posArrSize = 0;
+    int * posArr = new int[arrSize];
     for (i = 0; i < arrSize; i++){
         if (arr[i] > 0) {
             (posArrSize)++;
@@ -91,11 +91,11 @@ void getPosNums3(int* arr, int arrSize, int*& outPosArr, int& outPosArrSize){
     int posArrSize = 0,j = 0;
     for (int i = 0; i < arrSize; i++){
         if (arr[i] > 0) {
-        (posArrSize)++;
-        *(outPosArr + j) = arr[i];
-        j++;
+            (posArrSize)++;
+            *(outPosArr + j) = arr[i];
+            j++;
+        }
     }
-}
     outPosArrSize = posArrSize;
 }
 
