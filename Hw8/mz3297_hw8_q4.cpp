@@ -14,22 +14,21 @@ int main() {
 
 //n is the size of costArr
 int lowestCost(int cost[], int n){
-    int sum = 0;
-    if(n == 3){
-        if((cost[0] + cost[1]) <= (cost[0] + cost[2]))
-            sum += (cost[0] + cost[1]);
-        else
-            sum += (cost[0] + cost[2]);
+    int sum = 0, i;
+    if(n == 1){
+        sum = cost[0];
     }
-    else{
-        if(n % 2 == 0) {
-            sum += cost[n - 1];
-            n = n-1;
-        }
-        if (cost[n - 2] <= cost[n - 1])
-            sum += lowestCost(cost, n - 2) + cost[n - 2];
+    else if(n == 2){
+        sum = cost[0] + cost[1];
+    }
+    else if(n == 3){
+        sum = cost[0] + cost[2];
+    }
+    else {
+        if (lowestCost(cost + 1, n - 1) > lowestCost(cost + 2, n - 2))
+            sum += lowestCost(cost + 2, n - 2) + cost[0];
         else
-            sum += lowestCost(cost, n - 2) + cost[n - 1];
+            sum += lowestCost(cost + 1, n - 1) + cost[0];
     }
     return sum;
 }
